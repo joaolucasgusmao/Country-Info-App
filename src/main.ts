@@ -12,7 +12,6 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('Country Info App')
     .setDescription('Find many infos of countries')
-    .addTag('Country Info App')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
