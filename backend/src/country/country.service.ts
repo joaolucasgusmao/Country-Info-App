@@ -54,7 +54,7 @@ export class CountryService {
     }
 
     const populationCounts = response.data.data.filter((country: any) => {
-      return country.code === code;
+      return country.code === code || country.code.startsWith(code); 
     });
 
     return populationCounts[0].populationCounts;
@@ -72,7 +72,7 @@ export class CountryService {
     }
 
     const populationCounts = response.data.data.filter((country: any) => {
-      return country.iso3 === code;
+      return country.iso2 === code;
     });
 
     return populationCounts[0].flag;
