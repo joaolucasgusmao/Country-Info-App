@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { api } from "../../api";
 import ReactApexChart from "react-apexcharts";
+import { Loading } from "../../components/Loading";
+import styles from "./style.module.scss";
 
 const CountryInfoPage = () => {
   const { countryCode } = useParams();
@@ -18,24 +20,24 @@ const CountryInfoPage = () => {
     getCountryInfo();
   }, [countryCode]);
 
-  if (!countryData) return <p>Loading...</p>;
+  if (!countryData) return <Loading />;
 
   const options = {
     chart: {
       zoom: {
         enabled: true,
       },
+      
     },
     xaxis: {
       categories: countryData.populationCounts.map((item) => item.year),
     },
     title: {
-      text: "Population since 60's",
-    },
-    grid: {
-      row: {
-        // colors: ["red", "blue"], // takes an array which will be repeated on columns
-        opacity: 0.5,
+      text: "Population",
+      align: "left",
+      style: {
+        fontSize: "18px",
+        color: "var(--gray-3)",
       },
     },
   };
@@ -43,37 +45,50 @@ const CountryInfoPage = () => {
   const series = [
     {
       name: "Population",
-      data: countryData.populationCounts.map((item) => item.value),
+      data: countryData.populationCounts.map((item) =>
+        item.value.toLocaleString("pt-BR")
+      ),
     },
   ];
 
   return (
     <>
-      <div>
-        <h1>{countryData.commonName}</h1>
-        <img src={countryData.flag} alt={`${countryData.name} Flag`} />
+      <div className={styles.div}>
+        <h1 className={styles.h1}>{countryData.commonName}</h1>
+        <img
+          className={styles.flag}
+          src={countryData.flag}
+          alt={`${countryData.name} Flag`}
+        />
       </div>
-      <div>
-        <ul>
-          {borders.map((border, index) => {
-            return (
-              <li key={index}>
-                <p>{border.commonName}</p>
-                <p>{border.oficialName}</p>
-                <p>{border.countryCode}</p>
-                <p>{border.region}</p>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-      <div>
+
+      <ul className={styles.ul}>
+        <h2 className={styles.h2}>Borders</h2>
+        {borders.map((border, index) => {
+          return (
+            <li className={styles.li} key={index}>
+              <div>
+                <h3 className={styles.h3}>Name: {border.commonName}</h3>
+                <p className={styles.p}>Official Name: {border.officialName}</p>
+                <p className={styles.p}>Continent: {border.region}</p>
+                <Link to={`/country/${border.countryCode}`}>
+                  <span className={styles.span}>
+                    Country Code: {border.countryCode}
+                  </span>
+                </Link>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+
+      <div className={styles.chartDiv}>
         <ReactApexChart
+          className={styles.chart}
           options={options}
           series={series}
           type="line"
           height={350}
-          width={1000}
         />
       </div>
     </>

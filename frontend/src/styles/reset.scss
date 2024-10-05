@@ -1,17 +1,20 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 
-  }
-  
-  button {
-    cursor: pointer;
-    border: none;
-    outline: none;
-  }
-  
-  ul,
-  ol {
-    list-style: none;
-  }
+  font-family: var(--font-primary);
+}
+
+body {
+  background: var(--background);
+}
+
+ul,
+ol, a {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
