@@ -42,6 +42,8 @@
 
   font-weight: var(--weight-1);
   font-size: var(--title-1);
+
+  margin-top: 1.5rem;
 }
 
 .h2 {
@@ -59,5 +61,10 @@
 }
 
 .p:hover {
-    color: #ffffff
+  color: #ffffff;
+  transition: 1s;
+}
+
+.p:not(:hover) {
+    transition: color 1s;
 }

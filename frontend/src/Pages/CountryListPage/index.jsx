@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { api } from "../../api";
 import { Link } from "react-router-dom";
 import styles from "./style.module.scss";
+import { Loading } from "../../components/Loading";
 
 const CountryListPage = () => {
   const [countriesData, setCountriesData] = useState([]);
@@ -14,6 +15,8 @@ const CountryListPage = () => {
 
     getInfos();
   }, []);
+
+  if (!countriesData) return <Loading />;
 
   return (
     <>

@@ -27,7 +27,6 @@ const CountryInfoPage = () => {
       zoom: {
         enabled: true,
       },
-      
     },
     xaxis: {
       categories: countryData.populationCounts.map((item) => item.year),
@@ -83,13 +82,19 @@ const CountryInfoPage = () => {
       </ul>
 
       <div className={styles.chartDiv}>
-        <ReactApexChart
-          className={styles.chart}
-          options={options}
-          series={series}
-          type="line"
-          height={350}
-        />
+        {/* Verificação se countryData.populationCounts é verdadeiro e contém dados */}
+        {countryData.populationCounts &&
+        countryData.populationCounts.length > 0 ? (
+          <ReactApexChart
+            className={styles.chart}
+            options={options}
+            series={series}
+            type="line"
+            height={350}
+          />
+        ) : (
+          <p>No population data available.</p>
+        )}
       </div>
     </>
   );
