@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { api } from "../../api";
+import { api } from "../../utils/api";
 import ReactApexChart from "react-apexcharts";
 import { Loading } from "../../components/Loading";
 import styles from "./style.module.scss";
@@ -52,8 +52,8 @@ const CountryInfoPage = () => {
 
   return (
     <>
-      <div className={styles.div}>
-        <h1 className={styles.h1}>{countryData.commonName}</h1>
+      <div className={styles.flagContainer}>
+        <h1 className={styles.countryTitle}>{countryData.commonName}</h1>
         <img
           className={styles.flag}
           src={countryData.flag}
@@ -61,40 +61,42 @@ const CountryInfoPage = () => {
         />
       </div>
 
-      <ul className={styles.ul}>
-        <h2 className={styles.h2}>Borders</h2>
-        {borders.map((border, index) => {
-          return (
-            <li className={styles.li} key={index}>
-              <div>
-                <h3 className={styles.h3}>Name: {border.commonName}</h3>
-                <p className={styles.p}>Official Name: {border.officialName}</p>
-                <p className={styles.p}>Continent: {border.region}</p>
-                <Link to={`/country/${border.countryCode}`}>
-                  <span className={styles.span}>
-                    Country Code: {border.countryCode}
-                  </span>
-                </Link>
-              </div>
-            </li>
-          );
-        })}
+      <ul className={styles.container}>
+        {borders && borders.length > 0 ? (
+          <>
+            <h2 className={styles.bordersTitle}>Borders</h2>
+            {borders.map((border, index) => (
+              <li className={styles.countriesList} key={index}>
+                <div>
+                  <h3 className={styles.countryName}>
+                    Name: {border.commonName}
+                  </h3>
+                  <p className={styles.officialName}>
+                    Official Name: {border.officialName}
+                  </p>
+                  <p className={styles.continent}>Continent: {border.region}</p>
+                  <Link to={`/country/${border.countryCode}`}>
+                    <span className={styles.countryCode}>
+                      Country Code: {border.countryCode}
+                    </span>
+                  </Link>
+                </div>
+              </li>
+            ))}
+          </>
+        ) : (
+          <h2 className={styles.bordersTitle}>No borders found.</h2>
+        )}
       </ul>
 
       <div className={styles.chartDiv}>
-        {/* Verificação se countryData.populationCounts é verdadeiro e contém dados */}
-        {countryData.populationCounts &&
-        countryData.populationCounts.length > 0 ? (
-          <ReactApexChart
-            className={styles.chart}
-            options={options}
-            series={series}
-            type="line"
-            height={350}
-          />
-        ) : (
-          <p>No population data available.</p>
-        )}
+        <ReactApexChart
+          className={styles.chart}
+          options={options}
+          series={series}
+          type="line"
+          height={350}
+        />
       </div>
     </>
   );

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { api } from "../../api";
+import { api } from "../../utils/api";
 import { Link } from "react-router-dom";
 import styles from "./style.module.scss";
 import { Loading } from "../../components/Loading";
@@ -20,15 +20,15 @@ const CountryListPage = () => {
 
   return (
     <>
-      <h1 className={styles.h1}>Countries List</h1>
-      <ul className={styles.ul}>
+      <h1 className={styles.pageTitle}>Countries List</h1>
+      <ul className={styles.countriesContainer}>
         {countriesData.map((country, index) => {
           return (
-            <li className={styles.li} key={index}>
+            <li className={styles.countriesList} key={index}>
               <div>
-                <h2 className={styles.h2}>Name: {country.name}</h2>
+                <h2 className={styles.countryName}>Name: {country.name}</h2>
                 <Link to={`/country/${country.countryCode}`}>
-                  <p className={styles.p}>
+                  <p className={styles.countryCode}>
                     Country Code: {country.countryCode}
                   </p>
                 </Link>

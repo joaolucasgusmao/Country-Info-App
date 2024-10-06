@@ -1,4 +1,4 @@
-.ul {
+.countriesContainer {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -9,9 +9,10 @@
   gap: 1rem;
 
   margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
-.li {
+.countriesList {
   display: flex;
 
   height: 6.25rem;
@@ -35,7 +36,7 @@
   }
 }
 
-.h1 {
+.pageTitle {
   text-align: center;
 
   color: var(--gray-1);
@@ -46,25 +47,25 @@
   margin-top: 1.5rem;
 }
 
-.h2 {
+.countryName {
   color: var(--gray-2);
 
   font-weight: var(--weight-2);
   font-size: var(--title-2);
 }
 
-.p {
+.countryCode {
   color: var(--gray-3);
 
   font-weight: var(--weight-3);
   font-size: var(--title-3);
 }
 
-.p:hover {
+.countryCode:hover {
   color: #ffffff;
   transition: 1s;
 }
 
-.p:not(:hover) {
+.countryCode:not(:hover) {
     transition: color 1s;
 }

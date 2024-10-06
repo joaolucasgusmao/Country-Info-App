@@ -1,4 +1,12 @@
-.h1 {
+.flagContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.countryTitle {
   text-align: center;
 
   color: var(--gray-1);
@@ -9,20 +17,12 @@
   margin-top: 1.5rem;
 }
 
-.div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 1rem;
-}
-
 .flag {
   width: 300px;
   height: auto;
 }
 
-.ul {
+.container {
   margin-top: 2rem !important;
   display: flex;
   align-items: center;
@@ -36,7 +36,7 @@
   margin-top: 1rem;
 }
 
-.li {
+.countriesList {
   display: flex;
 
   height: 150px;
@@ -60,41 +60,42 @@
   }
 }
 
-.h2 {
+.bordersTitle {
   color: var(--gray-2);
 
   font-weight: var(--weight-2);
   font-size: 1.4375rem;
 }
 
-.h3 {
+.countryName {
   color: var(--gray-2);
 
   font-weight: var(--weight-2);
   font-size: var(--title-2);
 }
 
-.p {
+.officialName,
+.continent {
   color: var(--gray-3);
 
   font-weight: var(--weight-3);
   font-size: var(--title-3);
 }
 
-.span {
+.countryCode {
   color: var(--gray-3);
 
   font-weight: var(--weight-3);
   font-size: var(--title-3);
 }
 
-.span:hover {
+.countryCode:hover {
   color: #ffffff;
   transition: 1s;
 }
 
 span:not(:hover) {
-    transition: color 1s;
+  transition: color 1s;
 }
 
 .chartDiv {
