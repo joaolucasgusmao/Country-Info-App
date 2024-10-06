@@ -7,7 +7,6 @@ export class CountryService {
   constructor(private readonly httpService: HttpService) {}
 
   async findAll() {
-    
     const response = await firstValueFrom(
       this.httpService
         .get(process.env.FIND_MANY_COUNTRYS)
@@ -31,7 +30,7 @@ export class CountryService {
       throw new InternalServerErrorException('Internal server error.');
     }
 
-    const findPopulation = await this.findPopulation(code);
+    const findPopulation = await this.findPopulation(response.data.name);
 
     const findFlag = await this.findFlag(code);
 
@@ -42,10 +41,10 @@ export class CountryService {
     };
   }
 
-  async findPopulation(code: string) {
+  async findPopulation(countryName: string) {
     const response = await firstValueFrom(
       this.httpService
-      .get(`${process.env.FIND_POPULATION}`)
+        .get(`${process.env.FIND_POPULATION}`)
         .pipe(map((response) => response)),
     );
 
@@ -54,7 +53,7 @@ export class CountryService {
     }
 
     const populationCounts = response.data.data.filter((country: any) => {
-      return country.code === code || country.code.startsWith(code); 
+      return country.name === countryName;
     });
 
     return populationCounts[0].populationCounts;
