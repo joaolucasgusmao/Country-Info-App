@@ -1,55 +1,53 @@
-### Back-end
+# Back-end
 
-## Change directory
+### Change directory
 
 ```bash
 $ cd backend
 ```
 
-## Project setup
+### Project setup
 
 ```bash
 $ npm install
 ```
 
-## Environment variables
+### Environment variables
 
 ```bash
-$ copy the environment variables of the .env.example
-$ create the .env file and paste the environment variables there
+# copy the environment variables of the .env.example
+# create the .env file and paste the environment variables there
 ```
 
-## API Doc
+### API Doc
 
 ```bash
-$ Go to http://localhost:3000/doc to view the API documentation
+# Go to http://localhost:3000/doc to view the API documentation
 ```
 
-## Compile and run the project
+### Compile and run the project
 
 ```bash
-
 $ npm run start:dev
 ```
 
-### Front-end
+# Front-end
 
-## Change directory
+### Change directory
 
 ```bash
 $ cd ../
 $ cd frontend
 ```
 
-## Project setup
+### Project setup
 
 ```bash
 $ npm install
 ```
 
-## Compile and run the project
+### Compile and run the project
 
 ```bash
-
 $ npm run dev
 ```
